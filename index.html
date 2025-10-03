@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Metode Pembayaran - Mullet Store</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background: linear-gradient(135deg, #f9f7fe 0%, #e8f4ff 100%);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+        }
+
+        header {
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            color: white;
+            padding: 25px 30px;
+            text-align: center;
+        }
+
+        .store-name {
+            font-size: 28px;
+            font-weight: 700;
+            margin-bottom: 5px;
+        }
+
+        .store-id {
+            font-size: 16px;
+            opacity: 0.9;
+        }
+
+        .payment-section {
+            padding: 30px;
+        }
+
+        .section-title {
+            font-size: 22px;
+            font-weight: 600;
+            margin-bottom: 25px;
+            color: #2c3e50;
+            display: flex;
+            align-items: center;
+        }
+
+        .section-title i {
+            margin-right: 10px;
+            font-size: 24px;
+        }
+
+        .payment-methods {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: 20px;
+            margin-bottom: 30px;
+        }
+
+        .payment-card {
+            background: #f8faff;
+            border-radius: 15px;
+            padding: 20px;
+            border: 1px solid #e1e8ff;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+        }
+
+        .payment-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
+            border-color: #c5d4ff;
+        }
+
+        .payment-icon {
+            width: 50px;
+            height: 50px;
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-right: 15px;
+            font-weight: bold;
+            font-size: 20px;
+            color: white;
+        }
+
+        .dana {
+            background: linear-gradient(135deg, #1081e6, #0a6bc5);
+        }
+
+        .bca {
+            background: linear-gradient(135deg, #0066b3, #004d8c);
+        }
+
+        .seabank {
+            background: linear-gradient(135deg, #00a2ff, #0080cc);
+        }
+
+        .jago {
+            background: linear-gradient(135deg, #5e17eb, #4a10c7);
+        }
+
+        .payment-details {
+            flex: 1;
+        }
+
+        .payment-name {
+            font-weight: 600;
+            font-size: 18px;
+            margin-bottom: 5px;
+            color: #2c3e50;
+        }
+
+        .account-number {
+            font-size: 16px;
+            font-weight: 500;
+            margin-bottom: 5px;
+            color: #34495e;
+        }
+
+        .account-name {
+            font-size: 14px;
+            color: #7f8c8d;
+        }
+
+        .qris-section {
+            margin-top: 30px;
+            text-align: center;
+        }
+
+        .qris-container {
+            background: white;
+            border-radius: 15px;
+            padding: 20px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            display: inline-block;
+            max-width: 100%;
+        }
+
+        .qris-title {
+            font-size: 18px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+
+        .qris-image {
+            max-width: 100%;
+            border-radius: 10px;
+            margin-bottom: 15px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        .qris-steps {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .step {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            margin: 10px;
+            max-width: 150px;
+        }
+
+        .step-icon {
+            width: 60px;
+            height: 60px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #6a11cb 0%, #2575fc 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 10px;
+            color: white;
+            font-size: 24px;
+        }
+
+        .step-text {
+            text-align: center;
+            font-size: 14px;
+            color: #555;
+        }
+
+        footer {
+            text-align: center;
+            padding: 20px;
+            color: #7f8c8d;
+            font-size: 14px;
+            border-top: 1px solid #eee;
+            background: #f9f9f9;
+        }
+
+        @media (max-width: 600px) {
+            .payment-card {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .payment-icon {
+                margin-right: 0;
+                margin-bottom: 10px;
+            }
+            
+            .qris-steps {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .step {
+                margin-bottom: 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <div class="store-name">MULLET STORE</div>
+            <div class="store-id">OK2220891</div>
+        </header>
+        
+        <div class="payment-section">
+            <div class="section-title">
+                <i>💳</i> Metode Pembayaran
+            </div>
+            
+            <div class="payment-methods">
+                <div class="payment-card">
+                    <div class="payment-icon dana">D</div>
+                    <div class="payment-details">
+                        <div class="payment-name">DANA</div>
+                        <div class="account-number">082131670614</div>
+                        <div class="account-name">A/n: BAHRUL WIDAD</div>
+                    </div>
+                </div>
+                
+                <div class="payment-card">
+                    <div class="payment-icon bca">B</div>
+                    <div class="payment-details">
+                        <div class="payment-name">BANK BCA</div>
+                        <div class="account-number">7725776098</div>
+                        <div class="account-name">A/n: BAHRUL WIDAD</div>
+                    </div>
+                </div>
+                
+                <div class="payment-card">
+                    <div class="payment-icon seabank">S</div>
+                    <div class="payment-details">
+                        <div class="payment-name">SEABANK</div>
+                        <div class="account-number">901939946311</div>
+                        <div class="account-name">A/n: BAHRUL WIDAD</div>
+                    </div>
+                </div>
+                
+                <div class="payment-card">
+                    <div class="payment-icon jago">J</div>
+                    <div class="payment-details">
+                        <div class="payment-name">BANK JAGO</div>
+                        <div class="account-number">103321701498</div>
+                        <div class="account-name">A/n: INDAWATI YULIANINGSIH</div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="qris-section">
+                <div class="section-title">
+                    <i>📱</i> QRIS All Payment
+                </div>
+                
+                <div class="qris-container">
+                    <div class="qris-title">Scan QR Code untuk Pembayaran</div>
+                    <!-- Ganti URL gambar dengan gambar QRIS yang sesuai -->
+                    <img src="path/to/your/qris-image.jpg" alt="QR Code Pembayaran" class="qris-image">
+                    <div class="qris-steps">
+                        <div class="step">
+                            <div class="step-icon">1</div>
+                            <div class="step-text">Buka Aplikasi Berlogo QRIS</div>
+                        </div>
+                        <div class="step">
+                            <div class="step-icon">2</div>
+                            <div class="step-text">Scan QR Code</div>
+                        </div>
+                        <div class="step">
+                            <div class="step-icon">3</div>
+                            <div class="step-text">Bayar & Konfirmasi</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <footer>
+            <p>© 2023 Mullet Store | Pembayaran Nasional</p>
+        </footer>
+    </div>
+</body>
+</html>
